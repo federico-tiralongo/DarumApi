@@ -15,6 +15,6 @@ public class Daruma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String objetivo;
-    private String color;
+    private Integer color;
 
 }

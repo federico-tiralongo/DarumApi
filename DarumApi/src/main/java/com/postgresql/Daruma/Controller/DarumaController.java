@@ -1,5 +1,7 @@
 package com.postgresql.Daruma.Controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.postgresql.Daruma.model.Daruma;
 import com.postgresql.Daruma.repo.DarumaRepo;
@@ -16,7 +18,11 @@ public class DarumaController {
     DarumaRepo repo;
 
     @PostMapping("/daruma")
-    public void addDaruma(@RequestBody Daruma daruma){repo.save(daruma);}
+    public void addDaruma(@RequestBody Daruma daruma){
+        repo.save(daruma);
+        //con esta funcion pasado un tiempo te borra de forma automatica el Daruma
+        scheduleDeleteTask(daruma.getId());
+    }
 
     @GetMapping("/daruma")
     public List<Daruma> getAlldaruma(){return repo.findAll();}
@@ -31,4 +37,16 @@ public class DarumaController {
     }
     @DeleteMapping("/daruma/{id}")
     public void deletedaruma(@PathVariable("id") Long id){repo.deleteById(id);}
+
+    @DeleteMapping
+    private void scheduleDeleteTask(Long darumaId) {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                repo.deleteById(darumaId);
+                timer.cancel(); // Cancelar el timer después de la ejecución
+            }
+        }, 365 * 24 * 60 * 60 * 1000); // 30 segundos en milisegundos
+    }
 }
