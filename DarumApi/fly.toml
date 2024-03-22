@@ -10,7 +10,11 @@ primary_region = 'mad'
   image = 'maven:3.8.4-openjdk-17'
 
 [http_service]
+<<<<<<< HEAD
   internal_port = 4000
+=======
+  internal_port = 8080
+>>>>>>> origin/main
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
@@ -22,7 +26,11 @@ primary_region = 'mad'
     soft_limit = 200
 
 [[services]]
+<<<<<<< HEAD
     internal_port = 4000
+=======
+    internal_port = 8080
+>>>>>>> origin/main
     protocol = "tcp"
     auto_stop_machines = true
     auto_start_machines = true
@@ -30,7 +38,11 @@ primary_region = 'mad'
 
 
 [[services.ports]]
+<<<<<<< HEAD
     port = 4000
+=======
+    port = 8080
+>>>>>>> origin/main
     handlers = ['http']
 
 [[vm]]
