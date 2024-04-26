@@ -16,5 +16,8 @@ public class Daruma {
     private long id;
     private String objetivo;
     private Integer color;
+    private Boolean rightEye;
+    private Boolean leftEye;
+    private Integer skin;
 
 }
