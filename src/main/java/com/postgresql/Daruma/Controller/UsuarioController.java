@@ -9,15 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class UsuarioController {
 
     @Autowired
     UsuarioRepo repo;
 
     @PostMapping("/usuario")
-    public void addUsuario(@RequestBody Usuario usuario){
+    public void addUsuario(@RequestBody Usuario usuario) {
         repo.save(usuario);
     }
+
     @GetMapping("/usuarios")
     public List<Usuario> getAllUsuarios() {
         return repo.findAll();

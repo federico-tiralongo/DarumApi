@@ -1,10 +1,9 @@
 package com.postgresql.Daruma.repo;
 
-
 import com.postgresql.Daruma.model.Color;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource
-public interface ColorRepo extends JpaRepository<Color ,Long>{
+@Repository
+public interface ColorRepo extends JpaRepository<Color, Long> {
 }

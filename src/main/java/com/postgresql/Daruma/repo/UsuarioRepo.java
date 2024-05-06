@@ -2,8 +2,8 @@ package com.postgresql.Daruma.repo;
 
 import com.postgresql.Daruma.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource
+@Repository
 public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
 }

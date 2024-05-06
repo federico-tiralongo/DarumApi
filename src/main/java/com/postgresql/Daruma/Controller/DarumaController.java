@@ -19,25 +19,32 @@ public class DarumaController {
     DarumaRepo repo;
 
     @PostMapping("/daruma")
-    public void addDaruma(@RequestBody Daruma daruma){
+    public void addDaruma(@RequestBody Daruma daruma) {
         repo.save(daruma);
-        //con esta funcion pasado un tiempo te borra de forma automatica el Daruma
+        // con esta funcion pasado un tiempo te borra de forma automatica el Daruma
         scheduleDeleteTask(daruma.getId());
     }
 
     @GetMapping("/daruma")
-    public List<Daruma> getAlldaruma(){return repo.findAll();}
+    public List<Daruma> getAlldaruma() {
+        return repo.findAll();
+    }
 
     @GetMapping("/daruma/{id}")
-    public Optional<Daruma> getdarumaById(@PathVariable("id") Long id){return repo.findById(id);}
+    public Optional<Daruma> getdarumaById(@PathVariable("id") Long id) {
+        return repo.findById(id);
+    }
 
     @PutMapping("/daruma/{id}")
-    public void updatedaruma(@PathVariable("id") Long id, @RequestBody Daruma daruma){
+    public void updatedaruma(@PathVariable("id") Long id, @RequestBody Daruma daruma) {
         daruma.setId(id);
         repo.save(daruma);
     }
+
     @DeleteMapping("/daruma/{id}")
-    public void deletedaruma(@PathVariable("id") Long id){repo.deleteById(id);}
+    public void deletedaruma(@PathVariable("id") Long id) {
+        repo.deleteById(id);
+    }
 
     @DeleteMapping
     private void scheduleDeleteTask(Long darumaId) {
