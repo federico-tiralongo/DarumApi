@@ -1,7 +1,7 @@
 package com.postgresql.Daruma.Controller;
 
-import com.postgresql.Daruma.model.Skins;
-import com.postgresql.Daruma.repo.SkinsRepo;
+import com.postgresql.Daruma.model.Skin;
+import com.postgresql.Daruma.repo.SkinRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,28 +10,28 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-public class SkinsController {
+public class SkinController {
 
     @Autowired
-    SkinsRepo repo;
+    SkinRepo repo;
 
     @PostMapping("/skin")
-    public void addskins(@RequestBody Skins skins) {
+    public void addskins(@RequestBody Skin skins) {
         repo.save(skins);
     }
 
     @GetMapping("/skin")
-    public List<Skins> getAllskins() {
+    public List<Skin> getAllskins() {
         return repo.findAll();
     }
 
     @GetMapping("/skin/{id}")
-    public Optional<Skins> getskinsById(@PathVariable("id") Long id) {
+    public Optional<Skin> getskinsById(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
     @PutMapping("/skin/{id}")
-    public void updateskins(@PathVariable("id") Long id, @RequestBody Skins skins) {
+    public void updateskins(@PathVariable("id") Long id, @RequestBody Skin skins) {
         skins.setId(id);
         repo.save(skins);
     }
