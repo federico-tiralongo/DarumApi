@@ -38,15 +38,15 @@ INSERT INTO public.daruma (id,left_eye,right_eye,objetivo,color,skin)
     ON CONFLICT DO NOTHING;
 
 -- Skin
-INSERT INTO public.skins (id,skin)
+INSERT INTO public.skin (id,skin)
 	VALUES (1,'MARBLE')
     ON CONFLICT DO NOTHING;
-INSERT INTO public.skins (id,skin)
+INSERT INTO public.skin (id,skin)
 	VALUES (2,'GOKU')
     ON CONFLICT DO NOTHING;
-INSERT INTO public.skins (id,skin)
+INSERT INTO public.skin (id,skin)
 	VALUES (3,'DEADPOOL')
     ON CONFLICT DO NOTHING;
-INSERT INTO public.skins (id,skin)
+INSERT INTO public.skin (id,skin)
 	VALUES (4,'GRASS')
     ON CONFLICT DO NOTHING;
