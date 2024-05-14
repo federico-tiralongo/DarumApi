@@ -13,7 +13,7 @@ import lombok.Data;
 public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String tipo;
 
 }

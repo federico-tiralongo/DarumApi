@@ -1,22 +1,22 @@
-CREATE TABLE Usuario (
+CREATE TABLE if not exists Usuario (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(255),
+    name VARCHAR(255),
     email VARCHAR(255),
-    contrasena VARCHAR(255)
-);
+    password VARCHAR(255)
+) ;
 
-CREATE TABLE Color (
+CREATE TABLE if not exists Color (
     id SERIAL PRIMARY KEY,
 	color VARCHAR(255),
 	tipo VARCHAR(255)
 );
 
-CREATE TABLE Skin (
+CREATE TABLE if not exists Skin (
     id SERIAL PRIMARY KEY,
 	skin VARCHAR(255)
 );
 
-CREATE TABLE Daruma (
+CREATE TABLE if not exists Daruma (
     id SERIAL PRIMARY KEY,
     objetivo VARCHAR(255),
     color INT,

@@ -36,7 +36,7 @@ services:
     volumes:
       - "./target/Daruma-0.0.1-SNAPSHOT.jar:/app.jar"
     # runs the jar with the docker spring profile to set the correct datasource URL
-    command: ["java", "-jar", "-Dspring.profiles.active=docker", "/app.jar"]
+    command: ["java", "-jar", "-Dspring.profiles.active=prod", "/app.jar"]
     depends_on:
       daruma_db:
         condition: service_healthy

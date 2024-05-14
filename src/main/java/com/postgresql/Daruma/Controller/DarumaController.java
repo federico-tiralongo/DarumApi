@@ -1,58 +1,65 @@
 package com.postgresql.Daruma.Controller;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.postgresql.Daruma.model.Daruma;
-import com.postgresql.Daruma.repo.DarumaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import com.postgresql.Daruma.model.Daruma;
+import com.postgresql.Daruma.service.DarumaService;
 
 @RestController
 @CrossOrigin
 public class DarumaController {
 
     @Autowired
-    DarumaRepo repo;
+    DarumaService darumaService;
 
     @PostMapping("/daruma")
     public void addDaruma(@RequestBody Daruma daruma) {
-        repo.save(daruma);
+        darumaService.save(daruma);
         // con esta funcion pasado un tiempo te borra de forma automatica el Daruma
         scheduleDeleteTask(daruma.getId());
     }
 
     @GetMapping("/daruma")
     public List<Daruma> getAlldaruma() {
-        return repo.findAll();
+        return darumaService.findAll();
     }
 
     @GetMapping("/daruma/{id}")
-    public Optional<Daruma> getdarumaById(@PathVariable("id") Long id) {
-        return repo.findById(id);
+    public Optional<Daruma> getdarumaById(@PathVariable("id") Integer id) {
+        return darumaService.findById(id);
     }
 
     @PutMapping("/daruma/{id}")
-    public void updatedaruma(@PathVariable("id") Long id, @RequestBody Daruma daruma) {
+    public void updatedaruma(@PathVariable("id") Integer id, @RequestBody Daruma daruma) {
         daruma.setId(id);
-        repo.save(daruma);
+        darumaService.save(daruma);
     }
 
     @DeleteMapping("/daruma/{id}")
-    public void deletedaruma(@PathVariable("id") Long id) {
-        repo.deleteById(id);
+    public void deletedaruma(@PathVariable("id") Integer id) {
+        darumaService.deleteById(id);
     }
 
     @DeleteMapping
-    private void scheduleDeleteTask(Long darumaId) {
+    private void scheduleDeleteTask(Integer darumaId) {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                repo.deleteById(darumaId);
+                darumaService.deleteById(darumaId);
                 timer.cancel(); // Cancelar el timer después de la ejecución
             }
         }, 365 * 24 * 60 * 60 * 1000); // 30 segundos en milisegundos

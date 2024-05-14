@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication()
 public class DarumaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DarumaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DarumaApplication.class, args);
+    }
 
 }
