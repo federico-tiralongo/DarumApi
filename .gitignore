@@ -4,3 +4,4 @@ target/*
 .idea
 .idea/*
 firebase.json
+oracle_wallet
