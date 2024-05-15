@@ -2,6 +2,7 @@ package com.postgresql.Daruma.config;
 
 import javax.security.sasl.AuthenticationException;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
@@ -19,13 +20,21 @@ import com.postgresql.Daruma.model.exception.UnauthorizedException;
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler({
+            BadRequestException.class })
+    @ResponseBody
+    public ResponseEntity<RestError> badRequest(final Exception ex) {
+        RestError error = new RestError(HttpStatus.BAD_REQUEST,
+                ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     @ExceptionHandler({ UnauthorizedException.class, InsufficientAuthenticationException.class,
             AuthenticationException.class, InvalidBearerTokenException.class })
     @ResponseBody
     public ResponseEntity<RestError> unauthorized(final Exception ex) {
         RestError error = new RestError(HttpStatus.UNAUTHORIZED,
                 ex.getLocalizedMessage());
-        // return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
@@ -34,7 +43,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     @ResponseBody
     public ResponseEntity<RestError> defaultExceptionHandler(final Exception ex) {
         RestError error = new RestError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage());
-
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(error);
     }
