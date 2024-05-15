@@ -13,7 +13,7 @@ import lombok.Data;
 public class Daruma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String objetivo;
     private Integer color;
     private Boolean rightEye;

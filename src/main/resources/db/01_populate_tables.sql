@@ -1,8 +1,8 @@
 -- Users
-INSERT INTO public.usuario (id,nombre,email,contrasena)
+INSERT INTO public.usuario (id,name,email,password)
 	VALUES (1,'Juanito','juanito@email.com','plaintext')
     ON CONFLICT DO NOTHING;
-INSERT INTO public.usuario (id,nombre,email,contrasena)
+INSERT INTO public.usuario (id,name,email,password)
 	VALUES (2,'Pepito','pepito@email.com','plaintext')
     ON CONFLICT DO NOTHING;
 

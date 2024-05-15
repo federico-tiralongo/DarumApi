@@ -1,5 +1,14 @@
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<include file="db/00_db_init.sql" />
-	<include file="db/01_populate_tables.sql" />
-	<include file="db/02_restart_sequences.sql" />
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <include file="db/00_db_init.sql" />
+    <include file="db/01_populate_tables.sql" />
+    <include file="db/02_restart_sequences.sql" />
+
+    <changeSet author="RCM" id="04_firebase_integration">
+        <sqlFile path="db/04_firebase_integration.sql"></sqlFile>
+        <rollback>
+            <sqlFile path="db/04_firebase_integration_rollback.sql"></sqlFile>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
